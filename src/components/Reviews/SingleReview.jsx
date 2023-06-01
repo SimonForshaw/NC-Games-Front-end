@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import CommentCard from "./CommentCard";
+import UpdownVote from "./LikeDislike";
 
 const SingleReview = () => {
   const [review, setReview] = useState({});
@@ -37,6 +38,7 @@ const SingleReview = () => {
             <u>Review</u>
           </h3>
           <p>{review.review_body}</p>
+          <UpdownVote votes={review.votes} review_id={review_id} />
         </ul>
         <CommentCard />
       </section>

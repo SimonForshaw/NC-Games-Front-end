@@ -31,4 +31,13 @@ function fetchCommentsById(review_id) {
     .catch((err) => console.log(err));
 }
 
-export { fetchReviewsList, fetchReviewById, fetchCommentsById };
+function changeVote(review_id, vote) {
+  return gamesApi
+    .patch(`/Reviews/${review_id}`, { inc_votes: vote })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => console.log(err));
+}
+
+export { fetchReviewsList, fetchReviewById, fetchCommentsById, changeVote };
