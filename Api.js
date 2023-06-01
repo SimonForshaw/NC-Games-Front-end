@@ -5,14 +5,21 @@ const gamesApi = axios.create({
 });
 
 function fetchReviewsList() {
-    return gamesApi
-      .get(`/Reviews`)
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => console.log(err));
-  }
+  return gamesApi
+    .get(`/Reviews`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => console.log(err));
+}
 
-export {
-  fetchReviewsList,
-};
+function fetchReviewById(review_id) {
+  return gamesApi
+    .get(`/Reviews/${review_id}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => console.log(err));
+}
+
+export { fetchReviewsList, fetchReviewById };

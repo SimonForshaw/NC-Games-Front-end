@@ -1,13 +1,19 @@
 import ReviewCard from "./ReviewCard";
 import * as api from "../../../Api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ReviewsList = ({ reviews, setReviews }) => {
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     api.fetchReviewsList().then((data) => {
       setReviews(data.reviews);
+      setIsLoading(false);
     });
   }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <ul className="reviews-list">
@@ -25,7 +31,7 @@ const ReviewsList = ({ reviews, setReviews }) => {
 
         return (
           <ReviewCard
-            key={review.review_id}
+            id={review.review_id}
             title={title}
             designer={designer}
             owner={owner}
