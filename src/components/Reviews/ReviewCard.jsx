@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 const ReviewCard = ({
+  id,
   title,
   designer,
   owner,
@@ -9,8 +12,12 @@ const ReviewCard = ({
   commentCount,
 }) => {
   return (
-    <li className="review-card">
-      <img src={reviewImg} alt={`display picture for ${title}`} className="review-card-img" />
+    <Link className="review-card" to={`/reviews/${id}`}>
+      <img
+        src={reviewImg}
+        alt={`display picture for ${title}`}
+        className="review-card-img"
+      />
       <div className="row">
         <h2>{title}</h2>
         <p>Designer: {designer}</p>
@@ -20,7 +27,7 @@ const ReviewCard = ({
         <p>Votes: {votes}</p>
         <p>Comment count {commentCount}</p>
       </div>
-    </li>
+    </Link>
   );
 };
 export default ReviewCard;
