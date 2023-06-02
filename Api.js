@@ -36,8 +36,8 @@ function changeVote(review_id, vote) {
     .patch(`/Reviews/${review_id}`, { inc_votes: vote })
     .then((res) => {
       return res.data;
-    })
-    .catch((err) => console.log(err));
+    });
+  // .catch((err) => console.log(err));
 }
 
 export { fetchReviewsList, fetchReviewById, fetchCommentsById, changeVote };

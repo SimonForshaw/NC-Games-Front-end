@@ -4,17 +4,18 @@ import { Button } from "@mui/material";
 
 const UpdownVote = ({ votes, review_id }) => {
   const [updateVote, setUpdateVote] = useState(0);
+  const [error, setError] = useState("");
 
   const upVote = (votes) => {
     setUpdateVote((currChange) => currChange + votes);
-
-    api.changeVote(review_id, votes);
+    setError("");
+    api.changeVote(review_id, votes).catch((err) => setError(err));
   };
 
   const downVote = (votes) => {
     setUpdateVote((currChange) => currChange - votes);
-
-    api.changeVote(review_id, -votes);
+    setError("");
+    api.changeVote(review_id, -votes).catch((err) => setError(err));
   };
   return (
     <section>
@@ -33,6 +34,7 @@ const UpdownVote = ({ votes, review_id }) => {
       >
         Downvote!
       </Button>
+      {error && <p className="error">{error.message}</p>}
     </section>
   );
 };
