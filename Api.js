@@ -37,7 +37,6 @@ function changeVote(review_id, vote) {
     .then((res) => {
       return res.data;
     });
-  // .catch((err) => console.log(err));
 }
 
 export { fetchReviewsList, fetchReviewById, fetchCommentsById, changeVote };

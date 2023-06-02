@@ -7,15 +7,27 @@ const UpdownVote = ({ votes, review_id }) => {
   const [error, setError] = useState("");
 
   const upVote = (votes) => {
-    setUpdateVote((currChange) => currChange + votes);
     setError("");
-    api.changeVote(review_id, votes).catch((err) => setError(err));
+    api
+      .changeVote(review_id, votes)
+      .then((res) => {
+        res ? setUpdateVote((currChange) => currChange + votes) : "";
+      })
+      .catch((err) => {
+        setError(err);
+      });
   };
 
   const downVote = (votes) => {
-    setUpdateVote((currChange) => currChange - votes);
     setError("");
-    api.changeVote(review_id, -votes).catch((err) => setError(err));
+    api
+      .changeVote(review_id, -votes)
+      .then((res) => {
+        res ? setUpdateVote((currChange) => currChange - votes) : "";
+      })
+      .catch((err) => {
+        setError(err);
+      });
   };
   return (
     <section>
