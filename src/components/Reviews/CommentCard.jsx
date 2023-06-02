@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 const CommentCard = () => {
   const [comments, setComments] = useState([]);
   const { review_id } = useParams();
-  console.log(comments);
   useEffect(() => {
     api.fetchCommentsById(review_id).then((data) => {
       setComments(data.comment);
@@ -14,11 +13,10 @@ const CommentCard = () => {
   }, []);
   return (
     <div>
-      {comments.map((comment) => {
-        console.log(comment);
+      {comments.map((comment, index) => {
         const date = dayjs(comment.created_at).format("DD-MM-YYYY HH:mm:ss");
         return (
-          <ul className="comment-card">
+          <ul className="comment-card" key={index}>
             <div className="row">
               <h2>Username: {comment.author}</h2>
               <p>{comment.body}</p>

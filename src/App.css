@@ -34,3 +34,9 @@
   max-height: 1000px;
   width: 300px;
 }
+
+.error {
+  color: darkred;
+  font-style: italic;
+  font-weight: bold;
+}
